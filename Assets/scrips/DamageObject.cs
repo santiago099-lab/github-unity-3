@@ -10,6 +10,8 @@ public class DamageObject : MonoBehaviour
         {
             Debug.Log("player Damaged");
             Destroy(collision.gameObject);
+
+            FindFirstObjectByType<GameManager>().PlayerDied();
         }
 
     }
