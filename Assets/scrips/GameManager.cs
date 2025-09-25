@@ -79,8 +79,14 @@ public class GameManager : MonoBehaviour
     private void UpdateUI()
     {
         if (fruitsText != null)
+        {
             fruitsText.text = $"Frutas: {fruitsCollected}/{currentLevelData.fruitsNeeded}";
-        if (timerText != null)
+        }
+        else
+        {
+            fruitsText.text = "Frutas: 0/30";
+        }
+        if (currentLevelData != null && timerText != null)
         {
             int minutes = Mathf.FloorToInt(currentTime / 60f);
             int seconds = Mathf.FloorToInt(currentTime % 60f);
