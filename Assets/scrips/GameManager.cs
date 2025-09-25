@@ -7,9 +7,11 @@ using UnityEngine.PlayerLoop;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
 
-    public int fruitsNeededTowin = 30;
-    public float timeLimit = 120f;
+    [Header("Level Configuration")]
+    public LevelData currentLevelData;
+
 
     public TextMeshProUGUI fruitsText;
     public TextMeshProUGUI timerText;
@@ -20,10 +22,28 @@ public class GameManager : MonoBehaviour
     private bool gameActive = true;
     private bool gameOver = false;
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+           Destroy(this.gameObject);
+           return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     private void Start()
     {
-        currentTime = timeLimit;
-        UpdateUI();
+       if (currentLevelData != null)
+        {
+            currentTime = currentLevelData.timeLimit;
+        }
+        else
+        {
+            currentTime = 120f; 
+        }
+       UpdateUI();
     }
 
     public void FruitCollected()
@@ -31,9 +51,9 @@ public class GameManager : MonoBehaviour
         if (!gameActive) return;
 
         fruitsCollected++;
-        Debug.Log($"Frutas: {fruitsCollected}/{fruitsNeededTowin}");
+        Debug.Log($"Frutas: {fruitsCollected}/{currentLevelData.fruitsNeeded}");
 
-        if (fruitsCollected >= fruitsNeededTowin)
+        if (fruitsCollected >= currentLevelData.fruitsNeeded)
         {
             Victory();
         }
@@ -59,7 +79,7 @@ public class GameManager : MonoBehaviour
     private void UpdateUI()
     {
         if (fruitsText != null)
-            fruitsText.text = $"Frutas: {fruitsCollected}/{fruitsNeededTowin}";
+            fruitsText.text = $"Frutas: {fruitsCollected}/{currentLevelData.fruitsNeeded}";
         if (timerText != null)
         {
             int minutes = Mathf.FloorToInt(currentTime / 60f);

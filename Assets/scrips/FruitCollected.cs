@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class FruitCollected : MonoBehaviour
 {
-
+    [Header("Configuration")]
+    public LevelData levelData;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -10,7 +11,7 @@ public class FruitCollected : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
-            FindFirstObjectByType<GameManager>().FruitCollected();
+           GameManager.Instance.FruitCollected();
 
             Destroy(gameObject, 0.5f);
         }

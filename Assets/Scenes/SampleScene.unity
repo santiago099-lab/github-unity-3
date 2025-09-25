@@ -2362,8 +2362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a1e04b9d7502846a48e8820aa8dc41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitsNeededTowin: 30
-  timeLimit: 120
+  currentLevelData: {fileID: 11400000, guid: 7807acf12ba13fe48bbb206bb50e7f6d, type: 2}
   fruitsText: {fileID: 1449048871}
   timerText: {fileID: 1447248624}
 --- !u!4 &617788478
@@ -5414,7 +5413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Frutas:0/30
+  m_text: Frutas:0/50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5826,6 +5825,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcaae391d00005246b31ebae6a4f99b4, type: 3}
+--- !u!1 &1611763451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611763452}
+  m_Layer: 0
+  m_Name: Tilemap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611763452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611763451}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.48764, y: -0.6458, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1801960977}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1621946166
 GameObject:
   m_ObjectHideFlags: 0
@@ -20117,13 +20148,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801960975}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.48764, y: 0.6458, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1621946167}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1611763452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1844110474 stripped
 Transform:
@@ -21013,7 +21044,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 3356250}
-  - {fileID: 1801960977}
+  - {fileID: 1611763452}
   - {fileID: 891602962}
   - {fileID: 212335977}
   - {fileID: 262097882}
