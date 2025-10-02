@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public Animator animator;
+
     [Header("Movement Settings")]
     public float moveSpeed = 2f;
     public float detectionRange = 5f;

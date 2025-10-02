@@ -2011,7 +2011,6 @@ GameObject:
   - component: {fileID: 579237422}
   - component: {fileID: 579237421}
   - component: {fileID: 579237420}
-  - component: {fileID: 579237424}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2103,24 +2102,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &579237424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579237419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2177580b6b50747ab1c76dc87e2e50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 0}
-  spawnDelay: 5
-  maxEnemies: 5
-  spawnPoint: {fileID: 0}
-  patrolPointB: {fileID: 0}
-  patrolPointA: {fileID: 0}
 --- !u!1001 &582111607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3005,7 +2986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 781428820}
   m_Layer: 0
-  m_Name: PatrolPointA
+  m_Name: Waypoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3019,8 +3000,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781428819}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.77, y: 0.43, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.77, y: 0.4300001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4089,7 +4070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1136401668}
   m_Layer: 0
-  m_Name: PatrolPointB
+  m_Name: Waypoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4103,8 +4084,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136401667}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.28, y: 0.43, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.3451567, y: 0.4300001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4411,7 +4392,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4516,12 +4497,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2177580b6b50747ab1c76dc87e2e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7355894873254623740, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
+  enemyPrefab: {fileID: 8934311219751400576, guid: 22eeece7841809e4e89d11bdaf7f1eb6, type: 3}
   spawnDelay: 5
   maxEnemies: 1
-  spawnPoint: {fileID: 1189769913}
-  patrolPointB: {fileID: 1136401668}
-  patrolPointA: {fileID: 781428820}
+  waypoint1: {fileID: 781428820}
+  waypoint2: {fileID: 1136401668}
 --- !u!1 &1199094479
 GameObject:
   m_ObjectHideFlags: 0
@@ -20525,71 +20505,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4028788256202726989, guid: 8bd97bbbde2f401439a2c7e024f95be5, type: 3}
   m_PrefabInstance: {fileID: 1248717967}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1990154228
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.245157
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.6670117
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709219614582818565, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5012216798260572694, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: pointA
-      value: 
-      objectReference: {fileID: 781428820}
-    - target: {fileID: 5012216798260572694, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: pointB
-      value: 
-      objectReference: {fileID: 1136401668}
-    - target: {fileID: 7355894873254623740, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
-      propertyPath: m_Name
-      value: MushroomEnemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2bbb212aedb15e047907226fbb6d820a, type: 3}
 --- !u!4 &1990560236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1419917216013560952, guid: 375c80e3ec3be3d43b6d0f8e78b9384f, type: 3}
@@ -21268,4 +21183,3 @@ SceneRoots:
   - {fileID: 1189769913}
   - {fileID: 781428820}
   - {fileID: 1136401668}
-  - {fileID: 1990154228}

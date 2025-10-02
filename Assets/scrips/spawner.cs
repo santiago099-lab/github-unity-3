@@ -4,34 +4,28 @@ using UnityEngine;
 
 public class spawner : MonoBehaviour
 {
-    [Header("Spawn Configuration")]
     public GameObject enemyPrefab;
     public float spawnDelay = 5f;
-    public int maxEnemies = 5;
-    public Transform spawnPoint;
+    public int maxEnemies = 1;
 
-    [Header("Patrol Points")]
-    public Transform patrolPointB;
-    public Transform patrolPointA;
+    [Header("Waypoints")]
+    public Transform waypoint1;
+    public Transform waypoint2;
+
 
     private GameObject currentEnemy;
     private int enemiesSpawned = 0;
 
     void Start()
     {
-        if (spawnPoint == null)
-        {
-            spawnPoint = transform;
-        }
         StartCoroutine(SpawnRoutine());
     }
 
     IEnumerator SpawnRoutine()
     {
-       while (enemiesSpawned < maxEnemies)
-       {
-           yield return new WaitForSeconds(spawnDelay);
-           
+        while (enemiesSpawned < maxEnemies)
+        {
+            yield return new WaitForSeconds(spawnDelay);
             SpawnEnemy();
             enemiesSpawned++;
 
@@ -39,17 +33,18 @@ public class spawner : MonoBehaviour
             {
                 yield return null;
             }
-
         }
     }
     void SpawnEnemy()
     {
-        currentEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-        EnemyAI enemyAI = currentEnemy.GetComponent<EnemyAI>();
-        if (enemyAI != null)
+        currentEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+
+        var enemyScript = currentEnemy.GetComponent<AIBasics>();
+        if (enemyScript != null && waypoint1 != null && waypoint2 != null)
         {
-            enemyAI.pointA = patrolPointA;
-            enemyAI.pointB = patrolPointB;
+            enemyScript.moveSpots = new Transform[2];
+            enemyScript.moveSpots[0] = waypoint1;
+            enemyScript.moveSpots[1] = waypoint2;
         }
     }
 }
