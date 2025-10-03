@@ -9,7 +9,7 @@ public class AIBasics : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    public float speed = 0.5f;
+    public float speed = 2f;
 
     private float waitTime;
 

@@ -3001,11 +3001,11 @@ Transform:
   m_GameObject: {fileID: 781428819}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.77, y: 0.4300001, z: 0}
+  m_LocalPosition: {x: -0.38778687, y: -0.7535151, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1189769913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &806438000
 PrefabInstance:
@@ -4085,11 +4085,11 @@ Transform:
   m_GameObject: {fileID: 1136401667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.3451567, y: 0.4300001, z: 0}
+  m_LocalPosition: {x: 0.18736982, y: -0.7535151, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1189769913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1141885880 stripped
 Transform:
@@ -4340,6 +4340,7 @@ GameObject:
   - component: {fileID: 1189769915}
   - component: {fileID: 1189769914}
   - component: {fileID: 1189769917}
+  - component: {fileID: 1189769918}
   m_Layer: 0
   m_Name: spawner
   m_TagString: Untagged
@@ -4359,7 +4360,9 @@ Transform:
   m_LocalPosition: {x: 5.157787, y: 1.1835152, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 781428820}
+  - {fileID: 1136401668}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1189769914
@@ -4500,6 +4503,22 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8934311219751400576, guid: 22eeece7841809e4e89d11bdaf7f1eb6, type: 3}
   spawnDelay: 5
   maxEnemies: 1
+  waypoint1: {fileID: 781428820}
+  waypoint2: {fileID: 1136401668}
+--- !u!114 &1189769918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189769912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796c310232045ff4ca2b7c6d7a8e1275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8934311219751400576, guid: 22eeece7841809e4e89d11bdaf7f1eb6, type: 3}
+  poolSize: 5
   waypoint1: {fileID: 781428820}
   waypoint2: {fileID: 1136401668}
 --- !u!1 &1199094479
@@ -21181,5 +21200,3 @@ SceneRoots:
   - {fileID: 617788478}
   - {fileID: 1384512546}
   - {fileID: 1189769913}
-  - {fileID: 781428820}
-  - {fileID: 1136401668}
