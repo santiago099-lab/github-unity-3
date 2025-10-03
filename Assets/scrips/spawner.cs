@@ -16,7 +16,6 @@ public class spawner : MonoBehaviour
 
 
     private GameObject currentEnemy;
-    private int enemiesSpawned = 0;
 
     private List<GameObject> Pool = new List<GameObject>();
 
