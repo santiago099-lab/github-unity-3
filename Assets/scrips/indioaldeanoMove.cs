@@ -54,7 +54,7 @@ public class indioaldeanoMove : MonoBehaviour
             animator.SetBool("Jump", true);
             animator.SetBool("Run", false);
         }
-       if(CheckGround.isGrounded==true)
+        else
         {
             animator.SetBool("Jump", false);
         }
