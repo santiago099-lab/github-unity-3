@@ -1,7 +1,9 @@
 using UnityEngine;
-
+using UnityEngine.Audio;
 public class FruitCollected : MonoBehaviour
 {
+    public AudioSource collectSound;
+
     [Header("Configuration")]
     public LevelData levelData;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,6 +16,8 @@ public class FruitCollected : MonoBehaviour
            GameManager.Instance.FruitCollected();
 
             Destroy(gameObject, 0.5f);
+
+            collectSound.Play();
         }
     }
 

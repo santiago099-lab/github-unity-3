@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public LevelData currentLevelData;
 
 
-    public TextMeshProUGUI fruitsText;
-    public TextMeshProUGUI timerText;
+    public UnityEngine.UI.Text fruitsText;
+    public UnityEngine.UI.Text timerText;
 
 
     private int fruitsCollected = 0;
@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-           Destroy(this.gameObject);
-           return;
+            Destroy(this.gameObject);
+            return;
         }
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
@@ -35,15 +35,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       if (currentLevelData != null)
+        if (currentLevelData != null)
         {
             currentTime = currentLevelData.timeLimit;
         }
         else
         {
-            currentTime = 120f; 
+            currentTime = 120f;
         }
-       UpdateUI();
+
+        gameActive = true;
+        gameOver = false;
+        fruitsCollected = 0;
+
+        UpdateUI();
+
+
     }
 
     public void FruitCollected()
@@ -71,32 +78,77 @@ public class GameManager : MonoBehaviour
         if (gameOver) return;
 
         gameOver = true;
-        gameActive = false;    
         gameActive = false;
         Debug.Log("¡se acabo el tiempo! ");
         Time.timeScale = 0f;
     }
     private void UpdateUI()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            return;
+        }
+
         if (fruitsText != null)
         {
-            fruitsText.text = $"Frutas: {fruitsCollected}/{currentLevelData.fruitsNeeded}";
+            if (currentLevelData != null)
+            {
+             fruitsText.text = $"Frutas: {fruitsCollected}/{currentLevelData.fruitsNeeded}";
+            }
+            else
+            {
+                fruitsText.text = "Frutas: 0/30";
+            }
         }
-        else
-        {
-            fruitsText.text = "Frutas: 0/30";
-        }
-        if (currentLevelData != null && timerText != null)
-        {
-            int minutes = Mathf.FloorToInt(currentTime / 60f);
-            int seconds = Mathf.FloorToInt(currentTime % 60f);
-            timerText.text = $"Tiempo: {minutes:00}:{seconds:00}";
-        }
+            if (currentLevelData != null && timerText != null)
+            {
+                int minutes = Mathf.FloorToInt(currentTime / 60f);
+                int seconds = Mathf.FloorToInt(currentTime % 60f);
+                timerText.text = $"Tiempo: {minutes:00}:{seconds:00}";
+            }
     }
+   
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        gameOver = false;
+        gameActive = true;
+
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+
+        StartCoroutine(ReconnectAfterSceneLoad());
+    }
+
+    private System.Collections.IEnumerator ReconnectAfterSceneLoad()
+    {
+        yield return null; 
+        GameObject fruitsTextObj = GameObject.Find("Frutas");
+        if (fruitsTextObj != null)
+        {
+            fruitsText = fruitsTextObj.GetComponent<UnityEngine.UI.Text>();
+        }
+
+        GameObject timerTextObj = GameObject.Find("tiempo");
+        if (timerTextObj != null)
+        {
+            timerText = timerTextObj.GetComponent<UnityEngine.UI.Text>();
+        }
+
+        fruitsCollected = 0;
+        gameActive = true;
+        gameOver = false;
+
+        if (currentLevelData != null)
+        {
+            currentTime = currentLevelData.timeLimit;
+        }
+        else
+        {
+            currentTime = 120f;
+        }
+
+        UpdateUI();
     }
 
     private void UpdateGameTimer()
@@ -115,6 +167,7 @@ public class GameManager : MonoBehaviour
     private void TimeUp()
     {
         gameActive = false;
+        gameOver = true;
         Debug.Log("¡se acabo el tiempo! ");
         Time.timeScale = 0f;
     }

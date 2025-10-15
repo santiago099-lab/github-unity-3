@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_1_Data
   m_EditorClassIdentifier: 
   levelName: Level 1
-  fruitsNeeded: 60
+  fruitsNeeded: 50
   timeLimit: 140
   playerSpeed: 5
   jumpForce: 10
