@@ -17,6 +17,24 @@ public class Enemydeath : MonoBehaviour
 
     public int lifes = 2;
 
+    private int initialLifes;
+
+    private void Start()
+    {
+        initialLifes = lifes;
+    }
+
+    private void OnEnable()
+    {
+        lifes = initialLifes;
+        spriteRenderer.enabled = true;
+        if (destroyPacticle != null)
+        {
+            destroyPacticle.SetActive(false);
+        }
+
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -45,7 +63,7 @@ public class Enemydeath : MonoBehaviour
     }
     public void EnemyDie()
     {
-        Destroy(gameObject);
+       gameObject.SetActive(false);
     }
 
 }
