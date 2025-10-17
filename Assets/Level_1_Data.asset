@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Level 1
   fruitsNeeded: 50
-  timeLimit: 140
+  timeLimit: 120
   playerSpeed: 5
   jumpForce: 10
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}

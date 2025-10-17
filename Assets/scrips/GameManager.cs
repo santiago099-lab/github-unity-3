@@ -1,20 +1,23 @@
 using JetBrains.Annotations;
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    
     [Header("Level Configuration")]
     public LevelData currentLevelData;
 
 
-    public UnityEngine.UI.Text fruitsText;
-    public UnityEngine.UI.Text timerText;
+    public TMPro.TextMeshProUGUI fruitsText;
+    public TMPro.TextMeshProUGUI timerText;
 
 
     private int fruitsCollected = 0;
@@ -48,9 +51,37 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         fruitsCollected = 0;
 
+        ReconnectUIReferences();
+
         UpdateUI();
 
 
+    }
+
+    private void ReconnectUIReferences()
+    {
+        GameObject CanvasObj = GameObject.Find("Canvas");
+        Debug.Log("Canvas encontrado: " + (CanvasObj != null));
+
+        if (CanvasObj != null)
+        {
+            Transform Canvas = CanvasObj.transform;
+
+            Transform fruitsPath = Canvas.Find("fruitscounts/contador de frutas/contador de frutas");
+            Debug.Log("FruitsText encontrado: " + (fruitsText != null));
+            if (fruitsPath != null)
+            {
+                fruitsText = fruitsPath.GetComponent<TMPro.TextMeshProUGUI>();
+                Debug.Log("FruitsText asignado: " + (fruitsText != null));
+            }
+            Transform timerPath = Canvas.Find("time/tiempo/tiempo");
+            Debug.Log("TimerPath encontrado: " + (timerPath != null));
+            if (timerPath != null)
+            {
+                timerText = timerPath.GetComponent<TMPro.TextMeshProUGUI>();
+                Debug.Log("TimerText asignado: " + (timerText != null));
+            }
+        }
     }
 
     public void FruitCollected()
@@ -80,7 +111,13 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameActive = false;
         Debug.Log("¡se acabo el tiempo! ");
-        Time.timeScale = 0f;
+        StartCoroutine(RestartAfterDelay(1f));
+    }
+
+    private System.Collections.IEnumerator RestartAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        RestartGame();
     }
     private void UpdateUI()
     {
@@ -114,10 +151,21 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         gameOver = false;
         gameActive = true;
+        fruitsCollected = 0;
 
+        if (currentLevelData != null)
+        {
+            currentTime = currentLevelData.timeLimit;
+        }
+        else
+        {
+            currentTime = 120f;
+        }
+
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
 
-        StartCoroutine(ReconnectAfterSceneLoad());
+
     }
 
     private System.Collections.IEnumerator ReconnectAfterSceneLoad()
@@ -126,13 +174,13 @@ public class GameManager : MonoBehaviour
         GameObject fruitsTextObj = GameObject.Find("Frutas");
         if (fruitsTextObj != null)
         {
-            fruitsText = fruitsTextObj.GetComponent<UnityEngine.UI.Text>();
+            fruitsText = fruitsTextObj.GetComponent<TMPro.TextMeshProUGUI>();
         }
 
         GameObject timerTextObj = GameObject.Find("tiempo");
         if (timerTextObj != null)
         {
-            timerText = timerTextObj.GetComponent<UnityEngine.UI.Text>();
+            timerText = timerTextObj.GetComponent<TMPro.TextMeshProUGUI>();
         }
 
         fruitsCollected = 0;
@@ -147,6 +195,8 @@ public class GameManager : MonoBehaviour
         {
             currentTime = 120f;
         }
+
+        
 
         UpdateUI();
     }
@@ -175,5 +225,35 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         UpdateGameTimer();
+    }
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        GameObject Canvas = GameObject.Find("Canvas");
+        Debug.Log("Canvas encontrado: " + (Canvas != null));
+
+        if (Canvas != null)
+        {
+            Transform CanvasObj = Canvas.transform;
+
+            Transform fruitsPath = CanvasObj.Find("fruitscounts/contador de frutas/contador de frutas");
+            Debug.Log("FruitsText encontrado: " + (fruitsText != null));
+            if (fruitsPath != null)
+            {
+                fruitsText = fruitsPath.GetComponent<TMPro.TextMeshProUGUI>();
+            }
+
+            Transform timerPath = CanvasObj.Find("time/tiempo/tiempo");
+            Debug.Log("TimerPath asignado: " + (timerPath != null));
+            if (timerPath != null)
+            {
+                timerText = timerPath.GetComponent<TMPro.TextMeshProUGUI>();
+                Debug.Log("TimerText asignado: " + (timerText != null));
+            }
+        }
+
+        UpdateUI();
     }
 }

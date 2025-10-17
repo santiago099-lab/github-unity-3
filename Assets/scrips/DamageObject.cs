@@ -8,7 +8,8 @@ public class DamageObject : MonoBehaviour
         
         if (collision.transform.CompareTag("Player"))
         {
-           collision.gameObject.GetComponent<PlayerRespawn>().PlayerDamaged();
+            Debug.Log("Pincho toco al jugador - llamado a PlayerDamage");
+            collision.gameObject.GetComponent<PlayerRespawn>().PlayerDamaged();
 
             FindFirstObjectByType<GameManager>().PlayerDied();
         }

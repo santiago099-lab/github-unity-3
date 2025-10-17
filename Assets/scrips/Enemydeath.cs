@@ -5,49 +5,47 @@ using System;
 
 public class Enemydeath : MonoBehaviour
 {
-    public float bounceForce = 10f;
+    public Collider2D collider2D;
+
+    public Animator animator;
+
+    public SpriteRenderer spriteRenderer;
+
+    public GameObject destroyPacticle;
+
+    public float jumpForce = 2.5f;
+
+    public int lifes = 2;
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Colision detectada con: " + collision.gameObject.name);
-
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.transform.CompareTag("Player"))
         {
-            Debug.Log("Es el jugador!");
-
-            Vector2 normal = collision.contacts[0].normal;
-            Debug.Log("Normal de colisión: " + normal);
-
-            if (normal.y <= -0.3f)
-            {
-                Debug.Log("Colisión desde arriba, enemigo muere.");
-                Die();
-                Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-                if (playerRb != null)
-                {
-                    Vector2 newVelocity = playerRb.linearVelocity;
-                    newVelocity.y = bounceForce;
-                    playerRb.linearVelocity = newVelocity;
-                }
-            }
-            else
-            {
-                Debug.Log("Jugador no golpea desde arriba. Implementar daño al jugador aqui.");
-            }
-
+            collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.up * jumpForce;
+            LosseLifeAndHit();
+            CheckLife();
         }
     }
 
-    void Die()
+    public void LosseLifeAndHit()
     {
-        gameObject.SetActive(false);
+        lifes--;
+        animator.Play("Hit");
     }
 
-    void Update()
+    public void CheckLife()
     {
-        if (transform.position.y < -10f)
+        if (lifes <= 0)
         {
-            Die();
+           destroyPacticle.SetActive(true);
+           spriteRenderer.enabled = false;
+           Invoke("EnemyDie", 0.2f);
         }
     }
+    public void EnemyDie()
+    {
+        Destroy(gameObject);
+    }
+
 }

@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 46a1e04b9d7502846a48e8820aa8dc41
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - currentLevelData: {fileID: 11400000, guid: 7807acf12ba13fe48bbb206bb50e7f6d, type: 2}
+  - fruitsText: {instanceID: 0}
+  - timerText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
