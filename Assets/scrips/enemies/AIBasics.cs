@@ -20,16 +20,22 @@ public class AIBasics : MonoBehaviour
 
     private Vector2 actualPos;
 
+    private Rigidbody2D rb2D;
+
     void Start()
     {
         waitTime = startWaitTime;
+        rb2D = GetComponent<Rigidbody2D>();
         StartCoroutine(CheckEnemyMoving());
     }
 
     void Update()
     {
        
-        transform.position = Vector2.MoveTowards(transform.position, moveSpots[i].transform.position, speed * Time.deltaTime);
+       Vector2 targetPos = moveSpots[i].transform.position;
+       Vector2 newPos = Vector2.MoveTowards(rb2D.position, targetPos, speed * Time.deltaTime);
+
+       rb2D.MovePosition(newPos);
 
         if (Vector2.Distance(transform.position, moveSpots[i].transform.position) < 0.2f)
         {
@@ -58,7 +64,7 @@ public class AIBasics : MonoBehaviour
     {
         while (true)
         {
-            actualPos = transform.position;
+            actualPos = rb2D.position;
 
             yield return new WaitForSeconds(0.5f);
 

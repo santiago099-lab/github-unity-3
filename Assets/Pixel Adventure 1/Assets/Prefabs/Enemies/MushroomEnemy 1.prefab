@@ -404,7 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4242793538224792817}
   spriteRenderer: {fileID: 9200102254427982464}
-  speed: 0.3
+  speed: 0.6
   moveSpots:
   - {fileID: 0}
   - {fileID: 0}
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662029de3b825a24d96f557d0a7b1abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider2D: {fileID: 5738740299121929548}
+  enemyCollider: {fileID: 0}
   animator: {fileID: 4242793538224792817}
   spriteRenderer: {fileID: 9200102254427982464}
   destroyPacticle: {fileID: 4855562442308301093}

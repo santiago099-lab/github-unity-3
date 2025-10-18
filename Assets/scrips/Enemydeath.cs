@@ -5,7 +5,7 @@ using System;
 
 public class Enemydeath : MonoBehaviour
 {
-    public Collider2D collider2D;
+    public Collider2D enemyCollider;
 
     public Animator animator;
 
@@ -17,16 +17,15 @@ public class Enemydeath : MonoBehaviour
 
     public int lifes = 2;
 
-    private int initialLifes;
 
-    private void Start()
+    private void Awake()
     {
-        initialLifes = lifes;
+       
     }
 
     private void OnEnable()
     {
-        lifes = initialLifes;
+        lifes = 2;
         spriteRenderer.enabled = true;
         if (destroyPacticle != null)
         {
@@ -38,11 +37,18 @@ public class Enemydeath : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Colision con: " + collision.gameObject.name + " | Tag: " + collision.gameObject.tag + " | ¿Es Player?: " + collision.transform.CompareTag("Player"));
+
         if (collision.transform.CompareTag("Player"))
         {
+            Debug.Log(">>> CONFIRMADO: Es el jugador - Aplicando Hit <<<");
             collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.up * jumpForce;
             LosseLifeAndHit();
             CheckLife();
+        }
+        else
+        {
+          Debug.Log(">>> No es el jugador - Ignorando colision <<<");
         }
     }
 
